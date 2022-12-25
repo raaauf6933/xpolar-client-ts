@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: '[name].[contenthash].js',
-      publicPath: env.WEBPACK_SERVE ? '/' : 'auto',
+      publicPath: env.NODE_ENV === 'development' ? '/' : '',
       clean: true,
     },
     module: {

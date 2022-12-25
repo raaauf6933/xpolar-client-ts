@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --env NODE_ENV=development --open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tsc --noEmit && eslint .",
     "check-types": "tsc --noEmit",
