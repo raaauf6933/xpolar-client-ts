@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[contenthash].js',
-    publicPath: '',
+    // publicPath: '/',
     clean: true,
   },
   module: {
@@ -44,6 +44,7 @@ module.exports = {
           resolve('assets/fonts'),
           resolve('assets/images'),
           resolve('assets/favicons'),
+          resolve('assets/icons'),
         ],
       },
     ],
@@ -62,10 +63,15 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@assets': path.resolve(__dirname, 'assets'),
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   devServer: {
     port: 3000,
     compress: true,
+    historyApiFallback: true,
   },
   devtool: 'source-map',
   plugins: [
