@@ -11,7 +11,10 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: '[name].[contenthash].js',
-      publicPath: env.NODE_ENV === 'development' ? '/' : 'build/',
+      publicPath:
+        env.NODE_ENV === 'development'
+          ? '/'
+          : 'https://rad-elf-945e45.netlify.app/',
       clean: true,
     },
     module: {
