@@ -3,15 +3,15 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import React from 'react';
 
-interface TableProps {
+interface TableProps<T> {
   columns: ColumnType[];
-  data: unknown[];
+  data: T[];
   hoverable?: boolean;
-  onRowClick?: (item: unknown) => void;
+  onRowClick?: (item: T) => void;
   size?: 'small' | 'default' | 'large';
 }
 
-const Table: React.FC<TableProps> = (props) => {
+const Table = <T extends object>(props: TableProps<T>) => {
   const { columns, data, onRowClick, size } = props;
 
   const renderCell = (item: unknown, column: ColumnType): React.ReactNode => {
@@ -35,7 +35,7 @@ const Table: React.FC<TableProps> = (props) => {
         </thead>
         <tbody>
           {data && data?.length !== 0
-            ? data.map((item: unknown, index) => (
+            ? data.map((item, index) => (
                 <tr
                   key={index}
                   className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"

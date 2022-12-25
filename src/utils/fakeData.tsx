@@ -2,7 +2,8 @@ import Badge from '@/components/Badge';
 import React from 'react';
 import { currencyFormat } from './currencyFormatter';
 
-interface FakeCasesType {
+export interface FakeCasesType {
+  id: string;
   client_id: string;
   reference_number: string;
   debtor_name: string;
@@ -19,6 +20,7 @@ export const getFakeCases = (): FakeCasesType[] => {
       client_reference: '110790',
       debtor_name: 'James Dean',
       dpd: 60,
+      id: '1',
       original_capital: currencyFormat(21000),
       reference_number: '20100121',
       status: <Badge color="success" label="Active" />,
@@ -28,6 +30,7 @@ export const getFakeCases = (): FakeCasesType[] => {
       client_reference: '110791',
       debtor_name: 'Aida Bugg',
       dpd: 60,
+      id: '2',
       original_capital: currencyFormat(52000),
       reference_number: '20100122',
       status: <Badge color="success" label="Active" />,
@@ -37,6 +40,7 @@ export const getFakeCases = (): FakeCasesType[] => {
       client_reference: '110792',
       debtor_name: 'Kevin Hy',
       dpd: 30,
+      id: '3',
       original_capital: currencyFormat(55212.53),
       reference_number: '20100123',
       status: <Badge color="error" label="Collection Finished" />,
@@ -46,6 +50,7 @@ export const getFakeCases = (): FakeCasesType[] => {
       client_reference: '110789',
       debtor_name: 'Joseph Santos',
       dpd: 90,
+      id: '4',
       original_capital: currencyFormat(72212.21),
       reference_number: '20100124',
       status: <Badge color="error" label="Collection Finished" />,
@@ -55,6 +60,7 @@ export const getFakeCases = (): FakeCasesType[] => {
       client_reference: '110783',
       debtor_name: 'Frank Dela Cruz',
       dpd: 120,
+      id: '5',
       original_capital: currencyFormat(22000),
       reference_number: '20100125',
       status: <Badge color="success" label="Active" />,
