@@ -11,7 +11,9 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: '[name].[contenthash].js',
-      ...(env.NODE_ENV === 'development' ? { publicPath: '/' } : {}),
+      ...(env.NODE_ENV === 'development'
+        ? { publicPath: '/' }
+        : { publicPath: process.env.URL }),
       clean: true,
     },
     module: {
