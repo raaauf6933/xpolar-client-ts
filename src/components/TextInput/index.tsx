@@ -1,15 +1,26 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { InputHTMLAttributes } from 'react';
+import {
+  UseFormRegister,
+  FieldValues,
+  Path,
+  UnPackAsyncDefaultValues,
+} from 'react-hook-form';
 
-interface TextInputProps
+interface TextInputProps<T extends FieldValues>
   extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
-  label: string;
   multipleline?: boolean;
   className?: string;
+  name: Path<UnPackAsyncDefaultValues<T>>;
+  required?: boolean;
+  label?: string;
+  register?: UseFormRegister<T>;
 }
 
-const TextInput: React.FC<TextInputProps> = (props) => {
+const TextInput = <T extends FieldValues>(props: TextInputProps<T>) => {
+  const { name, register, required } = props;
+  name;
   return (
     <div>
       <label
@@ -18,8 +29,17 @@ const TextInput: React.FC<TextInputProps> = (props) => {
       >
         {props.label}
       </label>
+
       <input
         {...props}
+        {...(register
+          ? {
+              ...register(name, {
+                required,
+              }),
+            }
+          : {})}
+        required={false}
         className={classNames(
           'block w-full rounded-lg border border-gray-300  p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500',
           {

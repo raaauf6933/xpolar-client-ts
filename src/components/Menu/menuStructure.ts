@@ -2,7 +2,7 @@ import { sectionNames } from '../../constant';
 import dashboard_icon from '@assets/icons/dashboard_1.svg';
 import briefcase_icon from '@assets/icons/briefcase.svg';
 import folder1_icon from '@assets/icons/folder_1.svg';
-import adjust_icon from '@assets/icons/adjust_icon.svg';
+import admin_icon from '@assets/icons/admin_icon.svg';
 
 export interface ChildMenuType {
   label: string;
@@ -52,7 +52,7 @@ const createMenuStructure = (): MenuStructureType[] => {
     },
     {
       ariaLabel: 'cmr',
-      icon: adjust_icon,
+      icon: admin_icon,
       label: sectionNames.cmr.title,
       url: '/cmr',
     },

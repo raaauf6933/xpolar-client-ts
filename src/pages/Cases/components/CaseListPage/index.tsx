@@ -16,7 +16,7 @@ const CaseListPage: React.FC<CaseListPageProps> = (props) => {
   return (
     <>
       <CaseSearchForm />
-      <div className="border border-solid p-4">
+      <div className="mt-5 border border-solid p-4">
         <Table
           columns={columns}
           data={data}

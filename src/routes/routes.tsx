@@ -4,6 +4,7 @@ import CaseList from '@/pages/Cases/CaseList';
 import AppLayout from '@/components/AppLayout';
 import DashBoard from '@/pages/Dashboard';
 import CaseDetails from '@/pages/Cases/CaseDetails';
+import AuthClient from '@/auth';
 
 export const router = createBrowserRouter([
   {
@@ -32,5 +33,9 @@ export const router = createBrowserRouter([
     ],
     element: <AppLayout />,
     errorElement: <Navigate to="/" />,
+  },
+  {
+    element: <AuthClient />,
+    path: '/login',
   },
 ]);

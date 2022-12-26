@@ -13,7 +13,11 @@ module.exports = (env, argv) => {
       filename: '[name].[contenthash].js',
       ...(env.NODE_ENV === 'development'
         ? { publicPath: '/' }
-        : { publicPath: `${process.env.URL}/` }),
+        : {
+            publicPath: process.env.URL
+              ? `${process.env.URL}/`
+              : window.location.origin,
+          }),
       clean: true,
     },
     module: {

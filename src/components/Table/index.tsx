@@ -45,7 +45,7 @@ const Table = <T extends object>(props: TableProps<T>) => {
                     <td
                       key={index}
                       className={classNames('py-4 px-6', {
-                        'py-1 text-xs': size === 'small',
+                        'py-2 text-xs': size === 'small',
                         'py-3 text-base': size === 'default',
                         'py-4 text-xl': size === 'large',
                       })}

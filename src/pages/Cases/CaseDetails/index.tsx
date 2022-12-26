@@ -1,11 +1,10 @@
 import React from 'react';
+import CaseDetailsPage from '../components/CaseDetailsPage';
 
 const CaseDetails = () => {
   return (
     <>
-      <div>
-        <h1>test</h1>
-      </div>
+      <CaseDetailsPage />
     </>
   );
 };
