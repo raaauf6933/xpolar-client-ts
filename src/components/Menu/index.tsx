@@ -24,10 +24,12 @@ const Menu: React.FC<MenuProps> = () => {
               <li key={index}>
                 <NavLink
                   to={menu.url}
+                  onClick={(e) => menu.disable && e.preventDefault()}
                   className={({ isActive }) =>
                     classNames(
                       'flex items-center rounded-lg p-2 text-base font-normal text-slate-700 hover:bg-slate-300 hover:text-white',
                       {
+                        [' cursor-not-allowed text-slate-200']: menu.disable,
                         ['bg-slate-300 text-white']: isActive,
                       },
                     )

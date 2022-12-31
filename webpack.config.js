@@ -73,6 +73,7 @@ module.exports = (env, argv) => {
       alias: {
         '@assets': path.resolve(__dirname, 'assets'),
         '@': path.resolve(__dirname, 'src'),
+        '@gqltypes': path.resolve(__dirname, 'gqltypes'),
       },
     },
     devServer: {

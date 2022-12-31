@@ -8,6 +8,7 @@ export interface ChildMenuType {
   label: string;
   url: string;
   icon?: string;
+  disable?: boolean;
 }
 
 export interface MenuStructureType {
@@ -17,12 +18,14 @@ export interface MenuStructureType {
   url: string;
   childMenu?: ChildMenuType[];
   end?: boolean;
+  disable?: boolean;
 }
 
 const createMenuStructure = (): MenuStructureType[] => {
   return [
     {
       ariaLabel: 'dashboard',
+      disable: true,
       end: true,
       icon: dashboard_icon,
       label: sectionNames.dashboard.title,
@@ -32,11 +35,11 @@ const createMenuStructure = (): MenuStructureType[] => {
       ariaLabel: 'collect',
       childMenu: [
         {
-          label: 'Cases',
+          label: sectionNames.cases.title,
           url: 'cases',
         },
         {
-          label: 'My Cases',
+          label: sectionNames.my_cases.title,
           url: 'my_cases',
         },
       ],
@@ -46,12 +49,28 @@ const createMenuStructure = (): MenuStructureType[] => {
     },
     {
       ariaLabel: 'collect',
+      childMenu: [
+        {
+          label: sectionNames.import_cases.title,
+          url: 'import_cases',
+        },
+        {
+          label: sectionNames.import_payment.title,
+          url: 'my_cases',
+        },
+      ],
       icon: folder1_icon,
       label: sectionNames.manage.title,
       url: '/manage',
     },
     {
       ariaLabel: 'cmr',
+      childMenu: [
+        {
+          label: sectionNames.clients.title,
+          url: 'clients',
+        },
+      ],
       icon: admin_icon,
       label: sectionNames.cmr.title,
       url: '/cmr',

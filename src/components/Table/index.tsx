@@ -5,13 +5,13 @@ import React from 'react';
 
 interface TableProps<T> {
   columns: ColumnType[];
-  data: T[];
+  data: T[] | null | undefined;
   hoverable?: boolean;
   onRowClick?: (item: T) => void;
   size?: 'small' | 'default' | 'large';
 }
 
-const Table = <T extends object>(props: TableProps<T>) => {
+const Table = <T extends object | null | undefined>(props: TableProps<T>) => {
   const { columns, data, onRowClick, size } = props;
 
   const renderCell = (item: unknown, column: ColumnType): React.ReactNode => {

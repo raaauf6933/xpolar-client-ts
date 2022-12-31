@@ -41,6 +41,7 @@ const SubMenu: React.FC<MenuStructureType> = (props) => {
                   },
                 )
               }
+              onClick={(e) => subMenu.disable && e.preventDefault()}
             >
               {subMenu.label}
             </NavLink>

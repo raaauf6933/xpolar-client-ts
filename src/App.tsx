@@ -2,9 +2,19 @@ import * as React from 'react';
 import './style.css';
 import { router } from './routes/routes';
 import { RouterProvider } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: 'http://localhost:5001/',
+});
 
 const App: React.FC = () => {
-  return <AppRoutes />;
+  return (
+    <ApolloProvider client={client}>
+      <AppRoutes />
+    </ApolloProvider>
+  );
 };
 
 const AppRoutes = () => {

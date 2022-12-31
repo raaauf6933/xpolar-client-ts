@@ -14,16 +14,16 @@ const DebtorDetailsCard: React.FC = () => {
     >
       <div className="grid grid-cols-3 gap-5 min-[320px]:grid-cols-1 sm:grid-cols-1 md:grid-cols-3">
         <div className="flex">
-          <span className="mr-2 font-bold">Client Reference No.:</span>
-          <span>30214</span>
+          <span className="mr-2 font-bold">Reference No.:</span>
+          <span>20100252</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Debtor Name:</span>
           <span>Juan Dela Cruz</span>
         </div>
         <div className="flex">
-          <span className="mr-2 font-bold">Reference No.:</span>
-          <span>20100252</span>
+          <span className="mr-2 font-bold">Client Reference No.:</span>
+          <span>30214</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Birth Date:</span>
