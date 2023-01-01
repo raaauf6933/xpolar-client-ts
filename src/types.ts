@@ -5,5 +5,5 @@ export interface ColumnType {
   path?: string;
   key?: string | number;
   colSpan?: number;
-  content?: (params: unknown) => React.ReactNode;
+  content?: (params: object | null | undefined) => React.ReactNode;
 }

@@ -14,7 +14,10 @@ interface TableProps<T> {
 const Table = <T extends object | null | undefined>(props: TableProps<T>) => {
   const { columns, data, onRowClick, size } = props;
 
-  const renderCell = (item: unknown, column: ColumnType): React.ReactNode => {
+  const renderCell = (
+    item: object | null | undefined,
+    column: ColumnType,
+  ): React.ReactNode => {
     if (column.content) {
       return column.content(item);
     }

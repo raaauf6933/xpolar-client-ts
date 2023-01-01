@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Badge from '@/components/Badge';
 import { ColumnType } from '@/types';
-import { Client } from '@gqltypes/graphql';
+import { Client } from 'types/graphql';
 import moment from 'moment';
 
 export const columns: ColumnType[] = [

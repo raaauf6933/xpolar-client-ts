@@ -6,6 +6,7 @@ import AppLayout from '@/components/AppLayout';
 import CaseDetails from '@/pages/Cases/CaseDetails';
 import AuthClient from '@/auth';
 import ClientList from '@/pages/Clients/ClientList';
+import CrumbLink from '@/components/BreadCrumb/CrumbLink';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,8 @@ export const router = createBrowserRouter([
           },
           {
             element: <CaseDetails />,
+            handle: { crumb: () => <CrumbLink label="Case Details" /> },
+
             path: ':id',
           },
           {
@@ -29,6 +32,10 @@ export const router = createBrowserRouter([
             path: 'create',
           },
         ],
+
+        handle: {
+          crumb: () => <CrumbLink to="/cases" label="Cases" />,
+        },
         path: '/cases',
       },
       {

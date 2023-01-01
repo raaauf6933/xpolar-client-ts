@@ -1,4 +1,4 @@
-import { graphql } from '@gqltypes/gql';
+import { graphql } from 'types/gql';
 
 export const GET_CLIENTS = graphql(`
   query Query {

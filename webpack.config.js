@@ -14,22 +14,28 @@ module.exports = (env, argv) => {
       ...(env.NODE_ENV === 'development'
         ? { publicPath: '/' }
         : {
-            publicPath: process.env.URL
-              ? `${process.env.URL}/`
-              : window.location.origin,
+            publicPath: process.env.URL ? `${process.env.URL}/` : '',
           }),
       clean: true,
     },
     module: {
       rules: [
+        // {
+        //   test: /\.(ts|js)x?$/,
+        //   exclude: /node_modules/,
+        //   use: {
+        //     loader: 'babel-loader',
+        //     options: {
+        //       presets: ['@babel/preset-env', '@babel/preset-react'],
+        //     },
+        //   },
+        // },
         {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'tsx', // Or 'ts' if you don't need tsx
           },
         },
         {
@@ -42,6 +48,13 @@ module.exports = (env, argv) => {
             // Compiles Sass to CSS
             'sass-loader',
             'postcss-loader',
+            {
+              loader: 'esbuild-loader',
+              options: {
+                loader: 'css',
+                minify: true,
+              },
+            },
           ],
         },
         {
@@ -73,7 +86,7 @@ module.exports = (env, argv) => {
       alias: {
         '@assets': path.resolve(__dirname, 'assets'),
         '@': path.resolve(__dirname, 'src'),
-        '@gqltypes': path.resolve(__dirname, 'gqltypes'),
+        types: path.resolve(__dirname, 'types'),
       },
     },
     devServer: {
@@ -81,7 +94,7 @@ module.exports = (env, argv) => {
       compress: true,
       historyApiFallback: true,
     },
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     plugins: [
       new HtmlWebpackPlugin({
         template: 'public/index.html',

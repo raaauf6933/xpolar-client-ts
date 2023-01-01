@@ -3,7 +3,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
   documents: ['./src/pages/**/*.ts', './src/pages/**/*.tsx'],
   generates: {
-    'gqltypes/': {
+    'types/': {
       plugins: [],
       preset: 'client',
     },
