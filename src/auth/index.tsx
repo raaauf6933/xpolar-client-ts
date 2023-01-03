@@ -4,19 +4,10 @@ import coin_logo from '@assets/icons/coin.svg';
 import TextInput from '@/components/TextInput';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Button';
-import { useForm } from 'react-hook-form';
 
-type LoginFormData = {
-  username: string;
-  password: string;
-};
+import { Formik } from 'formik';
 
 const AuthClient = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>();
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -38,77 +29,93 @@ const AuthClient = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
               Log in to your account
             </h1>
-            <form
-              className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(onSubmit)}
+            <Formik
+              initialValues={{
+                password: '',
+                username: '',
+              }}
+              onSubmit={onSubmit}
             >
-              <div>
-                <input />
-                <TextInput
-                  label="Your username"
-                  name="username"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
-                  placeholder="olive_tree"
-                  register={register}
-                />
-              </div>
-              <div>
-                <TextInput
-                  label="Password"
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  register={register}
-                  required
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
-                />
-              </div>
-              {/* <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex h-5 items-center">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                      required
+              {({
+                values,
+                errors,
+                handleChange,
+                handleSubmit,
+                /* and other goodies */
+              }) => (
+                <form
+                  className="space-y-4 md:space-y-6"
+                  onSubmit={handleSubmit}
+                >
+                  <div>
+                    <TextInput
+                      label="Your username"
+                      name="username"
+                      onChange={handleChange}
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                      placeholder="olive_tree"
+                      value={values.username}
                     />
                   </div>
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      Remember me
-                    </label>
+                  <div>
+                    <TextInput
+                      label="Password"
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="••••••••"
+                      onChange={handleChange}
+                      value={values.password}
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    />
                   </div>
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Forgot password?
-                </a>
-              </div> */}
-              {errors.password && <span>This field is required</span>}
-              <Button
-                type="submit"
-                className=" w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 dark:bg-blue-600 dark:hover:bg-blue-700"
+                  {/* <div className="flex items-center justify-between">
+          <div className="flex items-start">
+            <div className="flex h-5 items-center">
+              <input
+                id="remember"
+                aria-describedby="remember"
+                type="checkbox"
+                className="h-4 w-4 rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                required
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label
+                htmlFor="remember"
+                className="text-gray-500 dark:text-gray-300"
               >
-                Log in
-              </Button>
+                Remember me
+              </label>
+            </div>
+          </div>
+          <a
+            href="#"
+            className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+          >
+            Forgot password?
+          </a>
+        </div> */}
+                  {errors.username && <span>This field is required</span>}
+                  <Button
+                    type="submit"
+                    className=" w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 dark:bg-blue-600 dark:hover:bg-blue-700"
+                  >
+                    Log in
+                  </Button>
 
-              {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{' '}
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Sign up
-                </a>
-              </p> */}
-            </form>
+                  {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+          Don’t have an account yet?{' '}
+          <a
+            href="#"
+            className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+          >
+            Sign up
+          </a>
+        </p> */}
+                </form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>

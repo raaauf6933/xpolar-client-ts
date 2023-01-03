@@ -1,7 +1,7 @@
 import { graphql } from 'types/gql';
 
 export const GET_CLIENTS = graphql(`
-  query Query {
+  query Clients {
     clients {
       id
       name

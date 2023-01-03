@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Badge from '@/components/Badge';
 import { ColumnType } from '@/types';
-import { Client } from 'types/graphql';
+import { Client, CommonStatus } from 'types/graphql';
 import moment from 'moment';
 
 export const columns: ColumnType[] = [
@@ -29,8 +29,8 @@ export const parseData = (data: (Client | null)[] | null | undefined) => {
     createdAt: moment(e?.createdAt).format('MM/DD/YYYY'),
     status: (
       <Badge
-        label={e?.status ? 'Active' : 'Deactivate'}
-        color={e?.status ? 'success' : 'error'}
+        label={e?.status === CommonStatus.Act ? 'Active' : 'Deactivate'}
+        color={e?.status === CommonStatus.Act ? 'success' : 'error'}
       />
     ),
   }));

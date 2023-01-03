@@ -45,6 +45,9 @@ export const router = createBrowserRouter([
             index: true,
           },
         ],
+        handle: {
+          crumb: () => <CrumbLink to="/clients" label="Clients" />,
+        },
         path: '/clients',
       },
     ],

@@ -13,13 +13,23 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n  query Query {\n    clients {\n      id\n      name\n      status\n      createdAt\n      updatedAt\n    }\n  }\n": types.QueryDocument,
+    "\n  query Clients_Name {\n    clients {\n      id\n      name\n    }\n  }\n": types.Clients_NameDocument,
+    "\n  mutation CreateClient($input: createClientInput!) {\n    createClient(input: $input) {\n      client {\n        createdAt\n        name\n        id\n        status\n        updatedAt\n      }\n      errors {\n        field\n        message\n      }\n    }\n  }\n": types.CreateClientDocument,
+    "\n  query Clients {\n    clients {\n      id\n      name\n      status\n      createdAt\n      updatedAt\n    }\n  }\n": types.ClientsDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Query {\n    clients {\n      id\n      name\n      status\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  query Query {\n    clients {\n      id\n      name\n      status\n      createdAt\n      updatedAt\n    }\n  }\n"];
+export function graphql(source: "\n  query Clients_Name {\n    clients {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  query Clients_Name {\n    clients {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateClient($input: createClientInput!) {\n    createClient(input: $input) {\n      client {\n        createdAt\n        name\n        id\n        status\n        updatedAt\n      }\n      errors {\n        field\n        message\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateClient($input: createClientInput!) {\n    createClient(input: $input) {\n      client {\n        createdAt\n        name\n        id\n        status\n        updatedAt\n      }\n      errors {\n        field\n        message\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Clients {\n    clients {\n      id\n      name\n      status\n      createdAt\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  query Clients {\n    clients {\n      id\n      name\n      status\n      createdAt\n      updatedAt\n    }\n  }\n"];
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.

@@ -9,15 +9,23 @@ import Button from '@/components/Button';
 
 interface ClientListPageProps {
   clients: (Client | null)[] | null | undefined;
+  onCreateClient: () => void;
 }
 
 const ClientListPage = (props: ClientListPageProps): JSX.Element => {
+  const { onCreateClient } = props;
   const data = parseData(props.clients);
 
   return (
     <>
-      <PageHeader title="Clients" action={<Button>Test</Button>} />
-
+      <PageHeader
+        title="Clients"
+        action={
+          <Button onClick={onCreateClient} color="primary">
+            Create New Client
+          </Button>
+        }
+      />
       <Card>
         <Table columns={columns} data={data} />
       </Card>

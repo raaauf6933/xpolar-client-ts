@@ -1,23 +1,47 @@
 import * as React from 'react';
 import ClientListPage from '../components/ClientListPage';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_CLIENTS } from '../queries';
-import Drawer from '@/components/Drawer';
-import Button from '@/components/Button';
 import useActionDialog from '@/hooks/useActionDialog';
 import { AgentListUrlDialog } from '../types';
+import ClientDrawerForm, {
+  ClientFormData,
+} from '../components/ClientDrawerForm';
+import { CREATE_CLIENT } from '../mutation';
+import { CommonStatus } from 'types/graphql';
 
 const ClientList: React.FC = () => {
-  const { data } = useQuery(GET_CLIENTS);
+  const { data, refetch: refetchClients } = useQuery(GET_CLIENTS);
+
+  const [createClient] = useMutation(CREATE_CLIENT, {
+    onCompleted: () => refetchClients(),
+  });
 
   const [openAction, closeAction, isOpen] =
     useActionDialog<AgentListUrlDialog>();
 
+  const handleCreateClient = (val: ClientFormData) => {
+    createClient({
+      variables: {
+        input: {
+          name: val.name,
+          status: val.status ? CommonStatus.Act : CommonStatus.Deact,
+        },
+      },
+    });
+  };
   return (
     <>
-      <ClientListPage clients={data?.clients} />
-      <Button onClick={() => openAction('onCreateClient')}>Open</Button>
-      <Drawer open={isOpen === 'onCreateClient'} onClose={closeAction} />
+      <ClientListPage
+        clients={data?.clients}
+        onCreateClient={() => openAction('onCreateClient')}
+      />
+
+      <ClientDrawerForm
+        open={isOpen === 'onCreateClient'}
+        onClose={closeAction}
+        handleCreateClient={(val) => handleCreateClient(val)}
+      />
     </>
   );
 };

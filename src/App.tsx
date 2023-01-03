@@ -6,7 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: 'http://localhost:5001/',
+  uri: process.env.GRAPHQL_URI,
 });
 
 const App: React.FC = () => {

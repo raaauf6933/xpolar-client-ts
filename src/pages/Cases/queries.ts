@@ -1,4 +1,10 @@
-// import makeQuery from '@/hooks/makeQuery';
-// import { gql } from '@apollo/client';
+import { graphql } from 'types/gql';
 
-// export const useMallListQuery = makeQuery<Users, UsersVariables>(GET_USERS);
+export const GET_CLIENTS_NAME = graphql(`
+  query Clients_Name {
+    clients {
+      id
+      name
+    }
+  }
+`);

@@ -51,7 +51,10 @@ const BreadCrumb = () => {
     .map((match) => match.handle.crumb(match.data));
 
   return (
-    <nav className="flex p-5" aria-label="Breadcrumb">
+    <nav
+      className="flex rounded-lg border border-gray-200 bg-gray-50 px-5 py-3 text-gray-700 dark:border-gray-700 dark:bg-gray-800"
+      aria-label="Breadcrumb"
+    >
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
         {crumbs.map((crumb, index, array) => {
           if (index !== array.length - 1) {

@@ -20,9 +20,14 @@ export type Client = {
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['ID']>;
   name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
+  status: CommonStatus;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
+export enum CommonStatus {
+  Act = 'ACT',
+  Deact = 'DEACT'
+}
 
 export type CreateClient = {
   __typename?: 'CreateClient';
@@ -58,12 +63,27 @@ export enum UserType {
 
 export type CreateClientInput = {
   name: Scalars['String'];
+  status: CommonStatus;
 };
 
-export type QueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type Clients_NameQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type QueryQuery = { __typename?: 'Query', clients?: Array<{ __typename?: 'Client', id?: string | null, name?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null> | null };
+export type Clients_NameQuery = { __typename?: 'Query', clients?: Array<{ __typename?: 'Client', id?: string | null, name?: string | null } | null> | null };
+
+export type CreateClientMutationVariables = Exact<{
+  input: CreateClientInput;
+}>;
 
 
-export const QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Query"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<QueryQuery, QueryQueryVariables>;
+export type CreateClientMutation = { __typename?: 'Mutation', createClient?: { __typename?: 'CreateClient', client?: { __typename?: 'Client', createdAt?: any | null, name?: string | null, id?: string | null, status: CommonStatus, updatedAt?: any | null } | null, errors?: Array<{ __typename?: 'Error', field?: string | null, message?: string | null } | null> | null } | null };
+
+export type ClientsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ClientsQuery = { __typename?: 'Query', clients?: Array<{ __typename?: 'Client', id?: string | null, name?: string | null, status: CommonStatus, createdAt?: any | null, updatedAt?: any | null } | null> | null };
+
+
+export const Clients_NameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Clients_Name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<Clients_NameQuery, Clients_NameQueryVariables>;
+export const CreateClientDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateClient"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"createClientInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createClient"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"client"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"field"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]}}]} as unknown as DocumentNode<CreateClientMutation, CreateClientMutationVariables>;
+export const ClientsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Clients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<ClientsQuery, ClientsQueryVariables>;
