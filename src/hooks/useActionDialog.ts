@@ -12,7 +12,7 @@ const useActionDialog = <
   const [searchParams, setSearchParams] = useSearchParams();
 
   const openAction = (name: string) => {
-    searchParams.append('action', name);
+    searchParams.set('action', name);
     setSearchParams(searchParams);
   };
 

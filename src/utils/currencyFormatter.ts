@@ -6,3 +6,7 @@ export const currencyFormat = (value: number): string => {
     style: 'currency',
   }).format(value);
 };
+
+export const numberFormat = (value: number): string => {
+  return new Intl.NumberFormat('en-US').format(value);
+};

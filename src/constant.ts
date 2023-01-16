@@ -1,4 +1,8 @@
 export const sectionNames = {
+  case_batch: {
+    description: 'import cases section name',
+    title: 'Case Batch',
+  },
   cases: {
     description: 'cases section name',
     title: 'Cases',
@@ -18,10 +22,6 @@ export const sectionNames = {
   dashboard: {
     description: 'dashboard section name',
     title: 'Dashboard',
-  },
-  import_cases: {
-    description: 'import cases section name',
-    title: 'Import Cases',
   },
   import_payment: {
     description: 'import payment section name',

@@ -8,6 +8,7 @@ import React from 'react';
 export type ClientFormData = {
   name: string;
   status: boolean;
+  code: string;
 };
 
 interface ClientDrawerFormProps {
@@ -19,6 +20,7 @@ interface ClientDrawerFormProps {
 const ClientDrawerForm = (props: ClientDrawerFormProps): JSX.Element => {
   const { handleCreateClient, onClose } = props;
   const initialValues: ClientFormData = {
+    code: '',
     name: '',
     status: false,
   };
@@ -57,6 +59,12 @@ const ClientDrawerForm = (props: ClientDrawerFormProps): JSX.Element => {
                 label="Client Name"
                 onChange={handleChange}
                 value={values.name}
+              />
+              <TextInput
+                name="code"
+                label="Code"
+                onChange={handleChange}
+                value={values.code}
               />
               <Switch
                 name="status"

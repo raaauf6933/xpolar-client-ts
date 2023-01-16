@@ -2,7 +2,8 @@ import * as React from 'react';
 import NavBar from '../NavBar';
 import Menu from '../Menu';
 import { Outlet } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface AppLayoutProps {
   children?: React.ReactNode;
 }
@@ -20,6 +21,7 @@ const AppLayout: React.FC<AppLayoutProps> = () => {
           </div>{' '}
         </main>
       </div>
+      <ToastContainer />
     </div>
   );
 };

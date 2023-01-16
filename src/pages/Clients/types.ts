@@ -1,4 +1,4 @@
-export type AgentListUrlDialog =
+export type ClientListUrlDialog =
   | 'onCreateClient'
   | 'onUpdateStatus'
   | 'onChangeUpperAgent'

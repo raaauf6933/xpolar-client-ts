@@ -10,6 +10,10 @@ export const columns: ColumnType[] = [
     path: 'id',
   },
   {
+    label: 'Code',
+    path: 'code',
+  },
+  {
     label: 'Client Name',
     path: 'name',
   },

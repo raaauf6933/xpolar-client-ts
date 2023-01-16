@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import CaseList from '@/pages/Cases/CaseList';
+import CaseList from '@/pages/Cases/views/CaseList';
 import AppLayout from '@/components/AppLayout';
 // import DashBoard from '@/pages/Dashboard';
-import CaseDetails from '@/pages/Cases/CaseDetails';
+import CaseDetails from '@/pages/Cases/views/CaseDetails';
 import AuthClient from '@/auth';
-import ClientList from '@/pages/Clients/ClientList';
+import ClientList from '@/pages/Clients/views/ClientList';
 import CrumbLink from '@/components/BreadCrumb/CrumbLink';
+import CaseBatchList from '@/pages/CaseBatch/views/CaseBatchList';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,13 @@ export const router = createBrowserRouter([
           crumb: () => <CrumbLink to="/clients" label="Clients" />,
         },
         path: '/clients',
+      },
+      {
+        element: <CaseBatchList />,
+        handle: {
+          crumb: () => <CrumbLink to="/case_batch" label="Case Batch" />,
+        },
+        path: '/case_batch',
       },
     ],
     element: <AppLayout />,

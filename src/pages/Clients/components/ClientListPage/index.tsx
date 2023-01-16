@@ -1,13 +1,13 @@
-import Card from '@/components/Card';
-import Table from '@/components/Table';
 import React from 'react';
-import { columns, parseData } from '../../utils';
+import { parseData } from '../../utils';
 import { Client } from 'types/graphql';
 import PageHeader from '@/components/PageHeader';
 import Button from '@/components/Button';
+import ClientList from '../ClientList';
+import { ListProps } from '@/types';
 // import BreadCrumb from '@/components/BreadCrumb';
 
-interface ClientListPageProps {
+interface ClientListPageProps extends ListProps {
   clients: (Client | null)[] | null | undefined;
   onCreateClient: () => void;
 }
@@ -26,9 +26,7 @@ const ClientListPage = (props: ClientListPageProps): JSX.Element => {
           </Button>
         }
       />
-      <Card>
-        <Table columns={columns} data={data} />
-      </Card>
+      <ClientList data={data} {...props} />
     </>
   );
 };

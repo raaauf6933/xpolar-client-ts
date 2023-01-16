@@ -1,7 +1,11 @@
-import { ApolloQueryResult } from '@apollo/client';
+import * as React from 'react';
+import {
+  ApolloQueryResult,
+  QueryResult,
+  useQuery as useBaseQuery,
+} from '@apollo/client';
 import { DocumentNode } from 'graphql';
-// import { useEffect } from 'react';
-import { QueryResult, useQuery as useBaseQuery } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 export interface LoadMore<TData, TVariables> {
   loadMore: (
@@ -14,7 +18,7 @@ export type UseQueryResult<TData, TVariables> = QueryResult<TData, TVariables> &
   LoadMore<TData, TVariables>;
 
 type UseQueryOpts<TVariables> = Partial<{
-  displayLoader: boolean;
+  // displayLoader: boolean;
   skip: boolean;
   variables: TVariables;
 }>;
@@ -30,11 +34,6 @@ function makeQuery<TData, TVariables>(
     skip,
     variables,
   }: UseQueryOpts<TVariables>): UseQueryResult<TData, TVariables> {
-    // const notify = useNotifier();
-    // const intl = useIntl();
-    // const [, dispatchAppState] = useAppState();
-    // const user = useUser();
-
     const queryData = useBaseQuery(query, {
       context: {
         useBatching: true,
@@ -42,22 +41,15 @@ function makeQuery<TData, TVariables>(
       errorPolicy: 'all',
       fetchPolicy: 'cache-and-network',
       onError: (error) => {
-        throw error;
+        if (error.name === 'ApolloError') {
+          toast(<span className="font-bold">Server Error</span>, {
+            type: 'error',
+          });
+        }
       },
       skip,
       variables,
     });
-
-    // useEffect(() => {
-    //   if (displayLoader) {
-    //     dispatchAppState({
-    //       payload: {
-    //         value: queryData.loading,
-    //       },
-    //       type: 'displayLoader',
-    //     });
-    //   }
-    // }, [queryData.loading]);
 
     const loadMore = (
       mergeFunc: (previousResults: TData, fetchMoreResult: TData) => TData,

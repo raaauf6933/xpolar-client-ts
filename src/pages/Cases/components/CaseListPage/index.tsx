@@ -1,19 +1,30 @@
 import Table from '@/components/Table';
 import * as React from 'react';
-import { columns } from '../../utils';
+import { columns, parseCasesData } from '../../utils';
 import { useNavigate } from 'react-router-dom';
-import { FakeCasesType } from '@/utils/fakeData';
 import CaseSearchForm from '@/components/CaseSearchForm';
-
 import PageHeader from '@/components/PageHeader';
+import { Case } from 'types/graphql';
+import { ListProps } from '@/types';
+import Pagination from '@/components/Pagination';
 
-interface CaseListPageProps {
-  data: FakeCasesType[];
+interface CaseListPageProps extends ListProps {
+  cases: (Case | null)[] | null | undefined;
 }
 
 const CaseListPage: React.FC<CaseListPageProps> = (props) => {
-  const { data } = props;
+  const {
+    cases,
+    onNextPage,
+    onPreviousPage,
+    onUpdatePageSetting,
+    pageInfo,
+    paginateState,
+    totalCount,
+  } = props;
   const navigate = useNavigate();
+
+  const data = parseCasesData(cases);
 
   return (
     <>
@@ -23,7 +34,17 @@ const CaseListPage: React.FC<CaseListPageProps> = (props) => {
         <Table
           columns={columns}
           data={data}
-          onRowClick={(row) => navigate(row.id)}
+          onRowClick={(row) => navigate(row?.id || '')}
+        />
+        <Pagination
+          hasNext={pageInfo?.next !== null}
+          hasPrevious={pageInfo?.previous !== null}
+          onNextPage={onNextPage}
+          onPreviousPage={onPreviousPage}
+          onUpdatePageSetting={onUpdatePageSetting}
+          paginateState={paginateState}
+          totalCounts={totalCount}
+          showing={pageInfo?.showing}
         />
       </div>
     </>

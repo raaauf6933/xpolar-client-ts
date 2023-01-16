@@ -51,8 +51,8 @@ const createMenuStructure = (): MenuStructureType[] => {
       ariaLabel: 'collect',
       childMenu: [
         {
-          label: sectionNames.import_cases.title,
-          url: 'import_cases',
+          label: sectionNames.case_batch.title,
+          url: 'case_batch',
         },
         {
           label: sectionNames.import_payment.title,

@@ -9,7 +9,7 @@ const config: CodegenConfig = {
     },
   },
   overwrite: true,
-  schema: 'http://localhost:5001/',
+  schema: 'http://localhost:5000/',
 };
 
 export default config;

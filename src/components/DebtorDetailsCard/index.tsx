@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { currencyFormat } from '@/utils/currencyFormatter';
 import Card from '../Card';
 import Badge from '../Badge';
+import moment from 'moment';
+import { CaseDetailsContext } from '@/context/CaseDetailsContext';
 
 const DebtorDetailsCard: React.FC = () => {
+  const data = useContext(CaseDetailsContext);
+
   return (
     <Card
       title={
@@ -15,27 +19,29 @@ const DebtorDetailsCard: React.FC = () => {
       <div className="grid grid-cols-3 gap-5 min-[320px]:grid-cols-1 sm:grid-cols-1 md:grid-cols-3">
         <div className="flex">
           <span className="mr-2 font-bold">Reference No.:</span>
-          <span>20100252</span>
+          <span>{data?.caseReference}</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Debtor Name:</span>
-          <span>Juan Dela Cruz</span>
+          <span>
+            {data?.person?.firstName} {data?.person?.lastName}
+          </span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Client Reference No.:</span>
-          <span>30214</span>
+          <span>{data?.clientReference}</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Birth Date:</span>
-          <span>20100252</span>
+          <span>{data?.person?.birthDay}</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Gender:</span>
-          <span>Male</span>
+          <span>{data?.person?.gender}</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Client Name:</span>
-          <span>A.B.C Company</span>
+          <span>{data?.caseBatch?.client?.name}</span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Original Capital</span>
@@ -55,11 +61,15 @@ const DebtorDetailsCard: React.FC = () => {
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Assignment Start Date:</span>
-          <span>2020/01/01</span>
+          <span>
+            {moment(data?.caseBatch?.assignmentStartDate).format('MM/DD/YYYY')}
+          </span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Assignment End date:</span>
-          <span>2020/01/31</span>
+          <span>
+            {moment(data?.caseBatch?.assignmentEndDate).format('MM/DD/YYYY')}
+          </span>
         </div>
         <div className="flex">
           <span className="mr-2 font-bold">Department:</span>
