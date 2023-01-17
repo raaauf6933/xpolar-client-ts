@@ -1,20 +1,20 @@
-import { Formik, FormikHelpers, FormikProps } from 'formik';
+import { Formik, FormikConfig, FormikValues } from 'formik';
 import React from 'react';
 
-interface FormProps<T> {
-  children: (props: FormikProps<T>) => React.ReactNode;
-  initialValues: T;
-  onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<T>;
-}
-
-const Form = <T extends object>(props: FormProps<T>): JSX.Element => {
+const Form = <Values extends FormikValues = FormikValues, ExtraProps = object>(
+  props: FormikConfig<Values> & ExtraProps,
+): JSX.Element => {
   const { children, initialValues, onSubmit } = props;
+
+  const formChildren = children as <T extends object>(
+    props: T,
+  ) => React.ReactNode;
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {(opts) => (
         <>
           {' '}
-          <form onSubmit={opts.handleSubmit}>{children(opts)}</form>
+          <form onSubmit={opts.handleSubmit}>{formChildren(opts)}</form>
         </>
       )}
     </Formik>

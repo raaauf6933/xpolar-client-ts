@@ -2,7 +2,9 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement | HTMLFormElement> {
+  extends React.ButtonHTMLAttributes<
+    HTMLButtonElement | HTMLFormElement | undefined
+  > {
   label?: string;
   className?: string;
   color?: 'primary' | 'error' | 'default';
