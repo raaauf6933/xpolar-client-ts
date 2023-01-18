@@ -55,6 +55,10 @@ const GET_CASES = graphql(`
           }
         }
       }
+      errors {
+        field
+        message
+      }
     }
   }
 `);

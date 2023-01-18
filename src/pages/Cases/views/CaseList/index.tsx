@@ -5,15 +5,14 @@ import { OrderDirection } from 'types/graphql';
 import usePaginator from '@/hooks/usePaginator';
 import useFilter from '@/hooks/useFilter';
 import { CasesQueryParams } from '../../types';
+import { getQueryFilter } from '../../utils';
 
 const CaseList: React.FC = () => {
   const [, paramsState] = useFilter<CasesQueryParams>();
   const [paginate, paginateState] = usePaginator();
   const { data: casesData } = useCasesListQuery({
     variables: {
-      filter: {
-        firstName: paramsState.firstName,
-      },
+      filter: getQueryFilter(paramsState),
       limit: paginateState.limit,
       page: paginateState.page,
       sortBy: {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Tab } from '@/components/Tabs';
 import useSection from '@/hooks/useSection';
 import { ColumnType } from '@/types';
-import { CaseSection } from './types';
+import { CaseSection, CasesQueryParams } from './types';
 import { Case } from 'types/graphql';
 import { currencyFormat } from '@/utils/currencyFormatter';
 import Badge from '@/components/Badge';
@@ -47,7 +47,7 @@ export const parseCasesData = (data: (Case | null)[] | null | undefined) => {
     id: e?.id,
     original_capital: currencyFormat(21000),
     reference_number: '20100121',
-    status: <Badge color="success" label="Active" />,
+    status: <Badge color="primary" label="In Collection" />,
   }));
 };
 
@@ -80,5 +80,18 @@ export const createCaseSectionTabs = <T extends CaseSection>(
         label: 'Debt Attributes',
       },
     ],
+  };
+};
+
+export const getQueryFilter = (params: CasesQueryParams): CasesQueryParams => {
+  return {
+    batchNumber: params.batchNumber,
+    birthDate: params.birthDate,
+    clientReference: params.clientReference,
+    debtorId: params.debtorId,
+    department: params.department,
+    firstName: params.firstName,
+    lastName: params.lastName,
+    status: params.status,
   };
 };

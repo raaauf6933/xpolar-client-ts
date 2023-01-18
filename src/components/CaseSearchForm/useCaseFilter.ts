@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useSearchParams } from 'react-router-dom';
 
 export type setFilterCallBack<TD> = (data: TD) => TD;
@@ -47,19 +48,13 @@ const useCaseFilter = <T extends object>(): [
     });
   };
 
-  const params = [];
-  for (const entry of searchParams.entries()) {
-    params.push(entry);
-  }
   let queryParams = <T>{};
 
-  if (params.length > 0) {
-    params.forEach((e) => {
-      queryParams = {
-        ...queryParams,
-        [e[0]]: e[1],
-      };
-    });
+  for (const entry of searchParams.entries()) {
+    queryParams = {
+      ...queryParams,
+      [entry[0]]: entry[1],
+    };
   }
 
   return [setFilter, queryParams, resetFilter];

@@ -10,20 +10,33 @@ import Form from '../Form';
 import useActionDialog from '@/hooks/useActionDialog';
 import useCaseFilter from './useCaseFilter';
 import _ from 'lodash';
+import SingleSelect from '../SingleSelect';
+import { caseDepartmentChoices, caseStatusChoices } from './utils';
 
 type InitialValuesTypes = {
   batchNumber: string;
   firstName: string;
   lastName: string;
+  status: string;
+  clientReference: string;
+  department: string;
+  birthDate: string;
+  debtorId: string;
 };
 
 const CaseSearchForm: React.FC = () => {
   const [setFilter, queryParams, resetFilter] =
     useCaseFilter<InitialValuesTypes>();
+
   const initialValues: InitialValuesTypes = {
     batchNumber: queryParams.batchNumber || '',
+    birthDate: queryParams.birthDate || '',
+    clientReference: queryParams.clientReference || '',
+    debtorId: queryParams.debtorId || '',
+    department: queryParams.department || '',
     firstName: queryParams.firstName || '',
     lastName: queryParams.lastName || '',
+    status: queryParams.status || '',
   };
 
   const [openAction, onClose, action] =
@@ -80,18 +93,49 @@ const CaseSearchForm: React.FC = () => {
                     icon={<ReactSVG src={list_icon} />}
                     onClickIcon={() => openAction('OnInputBulkBatchNumber')}
                   />
-                  <TextInput label="Client Reference:" name="" />
-                  <TextInput label="ID of Debtor:" name="" />
+                  <TextInput
+                    label="Client Reference:"
+                    name="clientReference"
+                    value={values.clientReference}
+                    placeholder="Ex. 192251"
+                    onChange={handleChange}
+                  />
+                  <TextInput
+                    label="ID of Debtor:"
+                    placeholder="Ex. 192251"
+                    name="debtorId"
+                    value={values.debtorId}
+                    onChange={handleChange}
+                  />
                   <TextInput
                     label="First Name:"
                     name="firstName"
+                    placeholder="Ex. Aida"
                     value={values.firstName}
                     onChange={handleChange}
                   />
-                  <TextInput label="Last Name:" name="" />
-                  <TextInput label="Birth Date:" name="" />
-                  <TextInput label="Status:" name="" />
-                  <TextInput label="Department:" name="" />
+                  <TextInput
+                    label="Last Name:"
+                    placeholder="Ex. Bugg"
+                    name="lastName"
+                    value={values.lastName}
+                    onChange={handleChange}
+                  />
+                  <TextInput label="Birth Date:" type="date" name="" />
+                  <SingleSelect
+                    choices={caseStatusChoices}
+                    label="Status:"
+                    onChange={handleChange}
+                    name="status"
+                    value={values.status}
+                  />
+                  <SingleSelect
+                    choices={caseDepartmentChoices}
+                    label="Department:"
+                    name="department"
+                    onChange={handleChange}
+                    value={values.department}
+                  />
                 </div>
                 <BatchInputDialog
                   onChange={handleChange}
